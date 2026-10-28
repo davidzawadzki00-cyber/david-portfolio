@@ -28,3 +28,14 @@ Local full-page PNGs in `.artifacts/review/`: `light-375.png`, `light-768.png`, 
 - No real résumé supplied. Adding `public/resume.pdf` enables the download on the next Vite restart/build; positive-file activation has not been browser-tested.
 - Native-device touch scrolling, other browser engines, live social scrapers, and actual deployment were not tested. No deployment settings changed.
 - Browser automation and accessibility tooling were installed outside the checkout in `/tmp/dz-browser`; no new runtime dependencies were introduced.
+
+## Archive and animation space update
+
+Prepared on `feat/portfolio-archive` after the Portfolio 2.0 deployment. The earlier no-deployment statements above describe that original review; Portfolio 2.0 was subsequently approved and deployed as `82f4487`. This new archive update is local and has not been pushed or deployed.
+
+- Added a Work section linking to a local snapshot of the older `portfolio` repository, with an honest, noninteractive 2D animation space for later uploads.
+- Preserved the archive's three pages, original stylesheet and five screenshots, adding only archive context and return navigation. Original external project links remain historical links; those projects were not repaired by this update.
+- `npm run check:portraits`, `npm run build`, and `git diff --check` passed; existing sculpture bundle-size warning remains.
+- Chromium checks at 375, 768, 1440, and 1920 pixels passed with no horizontal overflow. Work section axe WCAG A/AA checks passed in light and graphite themes. Desktop and mobile screenshots reviewed.
+- Archive homepage, class-project and CarryMode pages, all four class-project screenshots, and return-to-current-portfolio navigation passed. Archive access also works with JavaScript disabled. No empty video player, animation links, or media requests are emitted.
+- Review images: `.artifacts/review/archive-1440.png` and `.artifacts/review/archive-375.png` (also tablet and large-monitor variants). Animations remain intentionally absent until supplied.

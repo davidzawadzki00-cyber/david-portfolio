@@ -261,3 +261,19 @@ h2 { font-size: clamp(34px, 3.6vw, 56px); }
 .hero-links .arrow-down { transform: rotate(90deg); }
 .hero-links a:hover .arrow-down { transform: rotate(90deg) translate(3px, -3px); }
 .hero-links a:hover .arrow-icon:not(.arrow-down) { transform: translate(3px, -3px); }
+
+/* Work archive and a quiet, noninteractive space for future animation uploads. */
+.work-section { border-top: 1px solid var(--ink); padding-block: 30px var(--space); }
+.work-entry { display: grid; grid-template-columns: 1fr 1.2fr; gap: 7%; border-top: 1px solid var(--line); padding-block: 30px; }
+.work-entry .eyebrow { color: var(--muted); }
+.work-entry h3 { font: 400 clamp(25px, 2.6vw, 38px)/1.15 var(--display); letter-spacing: -.045em; margin: 16px 0 0; }
+.work-entry-copy { max-width: 54ch; }
+.work-entry-copy p { font-size: clamp(16px, 1.35vw, 20px); line-height: 1.7; }
+.work-entry-copy .text-link { margin-top: 22px; gap: 24px; }
+.work-entry-copy .text-link:hover .arrow-icon { transform: translate(3px, -3px); }
+.animation-status { display: inline-block; margin-top: 20px; border: 1px solid var(--line); padding: 7px 10px; }
+@media (max-width: 700px) {
+  .work-entry { grid-template-columns: 1fr; gap: 20px; padding-block: 26px; }
+  .work-entry h3 { font-size: 28px; }
+  .work-entry-copy .text-link { font-size: 12px; gap: 16px; }
+}
