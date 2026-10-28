@@ -1,0 +1,15 @@
+{
+  "name": "david-zawadzki-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "check:portraits": "node scripts/portraits.mjs --check"
+  },
+  "dependencies": { "three": "^0.185.0" },
+  "devDependencies": { "vite": "^7.3.1" },
+  "engines": { "node": ">=22.12.0" }
+}
