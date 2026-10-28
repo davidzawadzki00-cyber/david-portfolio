@@ -1,25 +1,30 @@
-# First-version validation
+# Portfolio 2.0 review
 
-## Verified locally
+Working branch: `feat/portfolio-2-editorial`. No merge, push, or deployment was performed.
 
-- `npm ci --no-audit --no-fund`: passed with the lockfile (Node 24.19.0, Vite 7.3.7, Three.js 0.185.1).
-- `npm run build`: passed. Vite reports the lazy-loaded Three.js/sculpture chunk above its default 500 kB warning threshold (~129 kB gzip). The initial page enhancement is ~1.2 kB gzip; text/links do not wait for the 3D chunk.
-- Served `dist/` with Vite preview under `/david-zawadzki-portfolio/`, not the domain root.
-- Chromium screenshots visually reviewed at 375, 768, and 1440 CSS pixels. No horizontal overflow, clipped name, or portrait/sculpture/text overlap in the reserved layouts. Fixed unsupported arrow glyphs and the statement heading alignment.
-- Normal browser review: HTTP 200, no page/console errors, no failed asset requests at all three widths.
-- Mouse drag, touch drag, arrow-key rotation, Home reset, reset button: passed.
-- No idle rendering and no offscreen render requests after settling: passed. Hidden-tab suspension is implemented with `visibilitychange`; not separately exercised in the browser automation.
-- Reduced-motion preference: no inertia/idle movement; rotation stops immediately after dragging. Native mobile touch scroll outside the sculpture: passed.
-- Statement/Contact/top anchors and exact email/LinkedIn destinations: passed.
-- JavaScript-disabled content and static SVG: passed. Simulated WebGL initialization failure and context loss preserve the fallback: passed. Fallback controls/labels reflect the static state.
-- Isolated abstract JPEG fixtures (outside this project) verified portrait directory creation, byte-identical copying, retained originals, explicit intrinsic dimensions, eager/high-priority hero and lazy headshot, correct subpath URLs, and rejection of wrong proportions. These fixture tests do not verify the actual photographs.
-- Original `/workspace/david-portfolio` checkout remains clean at `9e63e729973ad7f387d38ad4ddc2cff2f91fc02e`. Its repository files and publishing settings were not modified.
+## Verified in this environment
 
-## Blocked / unverified
+- Node 24.19.0; frozen dependency installation with `npm ci --cache /workspace/.npm --no-audit --no-fund`.
+- `npm run check:portraits`: both original JPEGs present with intended aspect ratios.
+- `npm run build`: passed, Vite 7.3.7 / Three.js 0.185.1. Existing sculpture chunk warning remains (509.46 kB / 128.52 kB gzip); main enhancement is 1.49 kB gzip, CSS 4.14 kB gzip.
+- Production preview served under `/david-portfolio/`; Chromium reviewed at 375, 768, 1440, and 1920 CSS pixels. No horizontal overflow. Both portraits load; full-body framing includes footwear. Desktop/tablet/mobile screenshots inspected.
+- Graphite selection persists across reload. Copy-email writes the exact address and announces success. No résumé link is emitted without an actual PDF.
+- Keyboard skip link and About/Statement/Contact anchors work. Automated axe WCAG 2 A/AA and 2.1 AA scan reports zero violations in settled light and graphite themes. This is not a claim of complete accessibility certification.
+- Sculpture initializes in Chromium WebGL; keyboard rotation changes rendered pixels and Home restores the original pixels. Pointer drag and reset button exercised. Emulated touch drag changes rendered pixels. Reduced-motion scrolling is automatic and sculpture has no idle movement.
+- Simulated WebGL context loss restores the static SVG and disables reset. JavaScript-disabled page retains text, portraits, navigation/contact links, and SVG fallback. No browser page errors during the responsive/interaction run.
+- Static `404.html` renders with a working portfolio return link. GitHub Pages routing itself is not tested locally.
+- Artist statement compared byte-for-byte with the base version. Original JPEG assets, portrait processing script, sculpture module, future-project schema, dependency manifests/lockfile, and deployment workflow are unchanged. Generated public portraits are byte-identical copies of originals.
+- About section contains 98 words. No project entries, fictional credentials, or résumé content added.
+- `git diff --check`: passed.
 
-- `npm run check:portraits`: intentionally FAILS until the two original JPEG files are available. Both are visible in chat, but no downloadable JPEGs were exposed to the runtime, including the shared downloads directory. The site contains honest reserved portrait areas; no substitute person or generated portrait was used.
-- Missing: `9ECD2D50-8857-4FC8-9CF5-3FE607DCA73D.jpeg` and `04E1A846-D312-432C-8A35-C57442047E2D(2).jpeg`. Actual image loading, full-color delivery, full-figure/shoes framing, and headshot clarity still require final review after copying those originals.
-- GitHub API is policy-blocked, so account identity, new repository creation, Actions execution, and live deployment are not verified. No live URL is claimed. The environment configuration draft saves additions for `api.github.com`, `vite.dev`, `docs.github.com`, and `threejs.org`; saving the draft does not apply or publish it. Review/save the changes in environment settings, then publish the environment to activate them.
-- Intended new repository name/base path: `david-zawadzki-portfolio` / `/david-zawadzki-portfolio/`, pending authenticated creation. The workflow refuses to deploy until the portraits pass validation.
+## Review artifacts
 
-See README for exact asset and publishing instructions. Re-review the actual portraits at the three widths and check the deployed URL/assets before calling the site live.
+Local full-page PNGs in `.artifacts/review/`: `light-375.png`, `light-768.png`, `light-1440.png`, `light-1920.png`, `graphite-1440.png`, `no-js-375.png`. This ignored directory also contains a review patch after the branch commit. Generated `public/portraits/` copies were already untracked at task start and remain outside the commit.
+
+## Limits and deferred details
+
+- The supplied live URL `https://davidzawadzki00-cyber.github.io/david-portfolio/` returned a proxy policy denial during verification. Canonical URL, `og:url`, and absolute social-image tags are deliberately deferred until live deployment can be verified. Basic sharing title/description metadata is present. A custom 1200×630 PNG is prepared at `public/social-preview.png` for later activation.
+- Existing DZ favicon retained; header adds a matching typographic monogram. System fonts avoid external font requests.
+- No real résumé supplied. Adding `public/resume.pdf` enables the download on the next Vite restart/build; positive-file activation has not been browser-tested.
+- Native-device touch scrolling, other browser engines, live social scrapers, and actual deployment were not tested. No deployment settings changed.
+- Browser automation and accessibility tooling were installed outside the checkout in `/tmp/dz-browser`; no new runtime dependencies were introduced.
